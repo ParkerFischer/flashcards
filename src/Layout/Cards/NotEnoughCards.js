@@ -1,10 +1,13 @@
-import { React } from "react";
-import { Link, useParams} from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 
+//this is diplayed if a deck doesn't have > 2 cards in the Study screen
 export default function NotEnoughCards({ cards }) {
-  const {deckId} = useParams()
+
+  const { deckId } = useParams();
+
   return (
-    <>
+    <React.Fragment>
       <div className="row">
         <div className="col">
           <h3>Not enough cards.</h3>
@@ -16,13 +19,13 @@ export default function NotEnoughCards({ cards }) {
       </div>
       <div className="row">
         <div className="col">
-      <Link to={`/decks/${deckId}/cards/new`}>
-              <button type="button" className="btn btn-primary">
-                Add Cards
-              </button>
-            </Link>
-            </div>
+          <Link to={`/decks/${deckId}/cards/new`}>
+            <button type="button" className="btn btn-primary">
+              Add Cards
+            </button>
+          </Link>
+        </div>
       </div>
-    </>
+    </React.Fragment>
   );
 }

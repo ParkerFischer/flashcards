@@ -1,11 +1,12 @@
-import { React } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import handleDeleteDeck from "./HandleDeleteDeck";
 
+//this creates a overview card for a single Deck to be displayed.
 export default function DeckItem({ deck }) {
   const history = useHistory();
   return (
-    <>
+    <React.Fragment>
       <div className="card my-2">
         <div className="row">
           <h3 className="card-title col mx-2 mt-2">{deck.name}</h3>
@@ -39,6 +40,6 @@ export default function DeckItem({ deck }) {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 }

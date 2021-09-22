@@ -1,8 +1,9 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { listDecks } from "../../utils/api/index.js";
 import ListDeckItems from "../Decks/ListDeckItems.js";
 
+//this is the frame for the primary Home page.
 function Home() {
   const [decks, setDecks] = useState([]);
 

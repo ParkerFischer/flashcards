@@ -1,33 +1,26 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import CardForm from "../Cards/CardForm";
 import { readDeck } from "../../utils/api";
 
-export default function CreateCard(){
 
-    const {deckId} = useParams()
-    const [deck, setDeck] = useState({})
-    
-    
-    useEffect(() => {
-        const abortController = new AbortController();
-    
-        async function fetchOneDeck() {
-          const response = await readDeck(deckId, abortController.signal);
-          setDeck(response)
-        }
-        fetchOneDeck();
-      }, [deckId]);
+//this is used for the frame of the Create Card page.
+export default function CreateCard() {
+  const { deckId } = useParams();
+  const [deck, setDeck] = useState({});
 
+  useEffect(() => {
+    const abortController = new AbortController();
+    async function fetchOneDeck() {
+      const response = await readDeck(deckId, abortController.signal);
+      setDeck(response);
+    }
+    fetchOneDeck();
+  }, [deckId]);
 
-
-
-
-
-
-    return(
-<>
-<div className="row col">
+  return (
+    <React.Fragment>
+      <div className="row col">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
@@ -37,12 +30,13 @@ export default function CreateCard(){
               <Link to={`/decks/${deckId}`}>{deck.name}</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-            Add Card
+              Add Card
             </li>
           </ol>
         </nav>
       </div>
-<h2>{deck.name}: Add Card</h2>
-<CardForm deckId={deckId} isNew={true}/>
-</>
-    )}
+      <h2>{deck.name}: Add Card</h2>
+      <CardForm deckId={deckId} isNew={true} />
+    </React.Fragment>
+  );
+}

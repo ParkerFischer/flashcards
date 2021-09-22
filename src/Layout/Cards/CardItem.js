@@ -1,11 +1,15 @@
-import { React } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import handleDeleteCard from "./HandleDeleteCard";
 
+/*This creates the visual Card with the Card information for display 
+with the correct buttons for Edit/Delete*/
 export default function CardItem({ card, index }) {
+
   const history = useHistory();
+
   return (
-    <>
+    <React.Fragment>
       <div key={index} className="">
         <div className="card mb-2">
           <div className="row">
@@ -33,7 +37,6 @@ export default function CardItem({ card, index }) {
                 </button>
               </Link>
             </div>
-
             <div className="col-4">
               <button
                 type="button"
@@ -48,6 +51,6 @@ export default function CardItem({ card, index }) {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 }

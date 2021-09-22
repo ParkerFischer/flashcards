@@ -1,16 +1,15 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { readDeck } from "../../utils/api";
 import CardStudy from "../Cards/CardStudy";
 
+//This is the frame for the Studay page.
 export default function Study() {
   const { deckId } = useParams();
-
   const [deck, setDeck] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
-
     async function fetchOneDeck() {
       const response = await readDeck(deckId, abortController.signal);
       setDeck(response);
@@ -19,7 +18,7 @@ export default function Study() {
   }, [deckId]);
 
   return (
-    <>
+    <React.Fragment>
       <div className="row">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -39,6 +38,6 @@ export default function Study() {
         <h2>Study: {deck.name}</h2>
       </div>
       <CardStudy cards={deck.cards} />
-    </>
+    </React.Fragment>
   );
 }

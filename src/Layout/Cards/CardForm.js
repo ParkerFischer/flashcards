@@ -1,7 +1,9 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { createCard, updateCard } from "../../utils/api";
-//componant used to either Edit Create a card.
+
+/*This is used to either Edit or Create a card. the prop 'isNew' is set to 
+True to determine a Create form and False for an Edit form.*/
 export default function DeckForm({
   editFront = "",
   editBack = "",
@@ -9,9 +11,9 @@ export default function DeckForm({
   cardId,
   isNew,
 }) {
+  
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
-
   const newCard = { front: front, back: back };
   const upCard = {
     front: front,
@@ -20,10 +22,10 @@ export default function DeckForm({
     deckId: Number(deckId),
   };
   const history = useHistory();
-
   const handleFrontChange = (event) => setFront(event.target.value);
   const handleBackChange = (event) => setBack(event.target.value);
 
+  //this runs initially and sets the values in the forms in case of Edit.
   useEffect(() => {
     setFront(editFront);
     setBack(editBack);
@@ -38,6 +40,7 @@ export default function DeckForm({
     console.log(result);
   };
 
+  //this is called to Edit a card
   const handleEditSubmit = async function (event) {
     event.preventDefault();
     console.log(upCard);
@@ -94,8 +97,7 @@ export default function DeckForm({
             {isNew ? "Done" : "Cancel"}
           </button>
           <button type="submit" className="btn btn-primary ml-2">
-            <span className="oi oi-task"></span>{" "}
-            {isNew ? "Submit" : "Save"}
+            <span className="oi oi-task"></span> {isNew ? "Submit" : "Save"}
           </button>
         </div>
       </form>

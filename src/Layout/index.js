@@ -12,7 +12,7 @@ import { Route, Switch } from "react-router-dom";
 
 function Layout() {
   return (
-    <>
+    <React.Fragment>
       <Header />
       <div className="container">
         
@@ -45,7 +45,7 @@ function Layout() {
           </Route>
         </Switch>
       </div>
-    </>
+    </React.Fragment>
   );
 }
 
